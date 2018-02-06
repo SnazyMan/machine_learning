@@ -18,10 +18,15 @@ function [w, b] = LogisticRegression(traindata, trainlabels)
     w = zeros(1, n);
     b = 0; 
     
+    % replace -1 labels with 0
+    I = find(trainlabels == -1);
+    for k = 1:length(I)
+        trainlabels(I(k)) = 0;
+    end
+    
     % Find minimum of error function using fminunc
     x0 = [zeros(n,1)];
-    options = optimoptions('fminunc','Algorithm','trust-region','SpecifyObjectiveGradient',true);
-    w = fminunc(@(w) costFunction(w, traindata, trainlabels), x0, options);
+    w = fminunc(@(w) costFunction(w, traindata, trainlabels), x0);
     
     % extract bias term from coefficient vector
     w = w';
@@ -29,7 +34,7 @@ function [w, b] = LogisticRegression(traindata, trainlabels)
     w = w(:, 1:end - 1);
 end 
  
- function [L, gradient] = costFunction(w, traindata, trainlabels)
+ function [L] = costFunction(w, traindata, trainlabels)
 
     [m, n] = size(traindata);
     
@@ -40,25 +45,10 @@ end
             + (1 - trainlabels(i)) * log(1 - sigmoid(traindata(i,:) * w));
     end
     L = -sum([L_t{:}]);
-    
-    % gradient of log liklihood
-    for q = 1:n
-        for z = 1:m
-            g_t{z} = (sigmoid(traindata(z,:) * w) - trainlabels(z)) * traindata(m, q);
-        end
-        gradient(q) = sum([g_t{:}]) / m;
-    end
-    
+
  end
  
 function g = sigmoid(u)
     % Calculates sigmoid of u for logisitic regression
     g = 1.0 ./ (1.0 + exp(-u));
 end
-
-% Gradient ascent to maximize liklihood w.r.t w (seems to give bad
-% estimation
-% gradient L(w) = sum(n=1 to N) (signma(W_T * Xn) - tn) Xn
-%for i = 1:m
-    %w = w + (trainlabels(m) - sigmoid(traindata(m, :) * w')) * traindata(m, :);
-%end

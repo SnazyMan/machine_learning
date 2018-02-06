@@ -18,11 +18,15 @@ function [w, b] = LogisticRegressionL2(traindata, trainlabels, lambda)
     % initialize (n x 1) x 1 weight vector & bias 
     w = zeros(1, n);
     b = 0;
+    
+    I = find(trainlabels == -1);
+    for k = 1:length(I)
+        trainlabels(I(k)) = 0;
+    end
 
     % Find minimum of error function using fminunc
     x0 = [zeros(n,1)];
-    options = optimoptions('fminunc','Algorithm','trust-region','SpecifyObjectiveGradient',true);
-    w = fminunc(@(w) costFunction(w, traindata, trainlabels, lambda), x0, options);
+    w = fminunc(@(w) costFunction(w, traindata, trainlabels, lambda), x0);
     
     % extract bias term from coefficient vector
     w = w';
@@ -30,7 +34,7 @@ function [w, b] = LogisticRegressionL2(traindata, trainlabels, lambda)
     w = w(:, 1:end - 1);
 end
 
-function [L, gradient] = costFunction(w, traindata, trainlabels, lambda)
+function [L] = costFunction(w, traindata, trainlabels, lambda)
     % cost function for logistic regression,
     % negative log liklihood
     [m, n] = size(traindata);
@@ -38,15 +42,7 @@ function [L, gradient] = costFunction(w, traindata, trainlabels, lambda)
         L_t{i} = trainlabels(i) * log(sigmoid(traindata(i,:) * w)) ...
             + (1 - trainlabels(i)) * log(1 - sigmoid(traindata(i,:) * w));
     end
-    L = -sum([L_t{:}]) + (lambda / (2 * m)) * sum(w.^2);
-    
-    % gradient of log liklihood
-    for q = 1:n
-        for z = 1:m
-            g_t{z} = (sigmoid(traindata(z,:) * w) - trainlabels(z)) * traindata(m, q);
-        end
-        gradient(q) = (sum([g_t{:}]) + (lambda * w(q)) ) / m;
-    end
+    L = -(1/m)*sum([L_t{:}]) + (lambda) * sum(w.^2);
     
 end
  
