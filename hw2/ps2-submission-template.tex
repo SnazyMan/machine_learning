@@ -1,0 +1,242 @@
+\documentclass[twoside,10pt]{article}
+
+%================================ PREAMBLE ==================================
+
+%--------- Packages -----------
+\usepackage{fullpage}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{url}
+
+%\usepackage{algorithm,algorithmic}
+
+%----------Spacing-------------
+%\setlength{\oddsidemargin}{0.25 in}
+%\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+%\setlength{\textwidth}{6.5 in}
+%\setlength{\textheight}{9.4 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+%----------Header--------------
+\newcommand{\psetsubmission}[2]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{page}{1}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf CIS 520: Machine Learning} \hfill {\bf Spring 2018} }
+       \vspace{6mm}
+       \hbox to 6.28in { \hfill {\Large Problem Set #1: PDF Submission} \hfill }
+       \vspace{6mm}
+       \hbox to 6.28in { Name: \emph{#2} \hfill }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{CIS 520: Machine Learning, Spring 2018, Problem Set #1 PDF Submission}{#2}
+   \vspace*{4mm}
+}
+
+%--------Environments----------
+\theoremstyle{definition}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newenvironment{pf}{{\noindent\sc Proof. }}{\qed}
+\newenvironment{map}{\[\begin{array}{cccc}} {\end{array}\]}
+
+\theoremstyle{definition}
+\newtheorem*{defn}{Definition}
+\newtheorem{exmp}{Example}
+\newtheorem*{prob}{Problem}
+\newtheorem*{exer}{Exercise}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Remark}
+\newtheorem*{note}{Note}
+
+%---------Definitions----------
+\newcommand{\Fig}[1]{Figure~\ref{#1}}
+\newcommand{\Sec}[1]{Section~\ref{#1}}
+\newcommand{\Tab}[1]{Table~\ref{#1}}
+\newcommand{\Tabs}[2]{Tables~\ref{#1}--\ref{#2}}
+\newcommand{\Eqn}[1]{Eq.~(\ref{#1})}
+\newcommand{\Eqs}[2]{Eqs.~(\ref{#1}-\ref{#2})}
+\newcommand{\Lem}[1]{Lemma~\ref{#1}}
+\newcommand{\Thm}[1]{Theorem~\ref{#1}}
+\newcommand{\Cor}[1]{Corollary~\ref{#1}}
+\newcommand{\App}[1]{Appendix~\ref{#1}}
+\newcommand{\Def}[1]{Definition~\ref{#1}}
+%
+\renewcommand{\>}{{\rightarrow}}
+\renewcommand{\hat}{\widehat}
+\renewcommand{\tilde}{\widetilde}
+\newcommand{\half}{\frac{1}{2}}
+%
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\N}{{\mathbb N}}
+\renewcommand{\P}{{\mathbf P}}
+\newcommand{\E}{{\mathbf E}}
+\newcommand{\Var}{{\mathbf{Var}}}
+\newcommand{\I}{{\mathbf I}}
+\newcommand{\1}{{\mathbf 1}}
+\newcommand{\0}{{\mathbf 0}}
+%
+\newcommand{\sign}{\textup{\textrm{sign}}}
+\newcommand{\er}{\textup{\textrm{er}}}
+\newcommand{\abs}{\textup{\textrm{abs}}}
+\newcommand{\sq}{\textup{\textrm{sq}}}
+\newcommand{\zo}{\textup{\textrm{0-1}}}
+%
+\renewcommand{\H}{{\mathcal H}}
+\newcommand{\F}{{\mathcal F}}
+\newcommand{\X}{{\mathcal X}}
+\newcommand{\Y}{{\mathcal Y}}
+\newcommand{\bX}{{\mathbf X}}
+%
+\newcommand{\p}{{\mathbf p}}
+\newcommand{\q}{{\mathbf q}}
+\renewcommand{\r}{{\mathbf r}}
+\newcommand{\x}{{\mathbf x}}
+\newcommand{\y}{{\mathbf y}}
+\renewcommand{\u}{{\mathbf u}}
+\newcommand{\w}{{\mathbf w}}
+%
+\newcommand{\bloss}{{\boldsymbol \ell}}
+\newcommand{\balpha}{{\boldsymbol \alpha}}
+\newcommand{\bxi}{{\boldsymbol \xi}}
+\newcommand{\bpsi}{{\boldsymbol \psi}}
+\newcommand{\btau}{{\boldsymbol \tau}}
+
+\newcommand\Tstrut{\rule{0pt}{2.6ex}}         % = `top' strut
+\newcommand\Bstrut{\rule[-0.9ex]{0pt}{0pt}}   % = `bottom' strut
+
+
+%=============================== END PREAMBLE ===============================
+
+%============================ BEGIN DOCUMENT ================================
+
+\begin{document}
+
+%Use the following format: \psetsubmission{problem set number}{name}
+
+\psetsubmission{2}{Firstname Lastname}
+
+%-------------------------------------------------- List Collaborators --------------------------------------------------
+
+
+{\bf Academic Honesty Declaration:}
+
+By submitting this document, I certify that all solutions below are \emph{my own work}. I have listed below all individuals (other than the course instructor/TAs) with whom I have discussed any of the problems and/or solutions; nevertheless, while I may have discussed some of the problems/solutions with these collaborators, I have written all solutions and code below \emph{independently, on my own.}
+\\
+
+{\bf Collaborators:}
+
+\begin{enumerate}
+\item Collaborator 1 name
+\item Collaborator 2 name
+\item (Add as many as needed)
+\end{enumerate}
+
+
+\newpage
+%--------------------------------------------- Begin Problem Solutions  --------------------------------------------
+
+
+\begin{enumerate}
+
+\item
+Solution to problem 1 goes here
+
+%
+\item
+Solution to problem 2 goes here
+
+%
+\item
+Solution to problem 3 goes here
+
+% Use this table to fill in your answers
+\begin{enumerate}
+	\item 
+	Solution goes here
+	\item 
+	Solution goes here
+
+\begin{center}
+	\begin{tabular}{lccc}
+		\hline
+		\textbf{Algorithm}  & \textbf{Training Error} & \textbf{Test Error} \\ \hline
+		% & \textbf{selected} & \textbf{error} & \textbf{error} \\ \hline
+		Linear logistic regression (from PS1) &   &  \Tstrut\Bstrut\\ \hline
+		Linear SVM &  &   \Tstrut\Bstrut\\ \hline
+		Kernel SVM, polynomial kernel $(\x^\top \x' + 1)^q$	&  & \Bstrut\\ \hline
+		Kernel SVM, RBF kernel $e^{-\gamma\|\x-\x'\|_2^2}$	 & &  \Bstrut\\ \hline
+		Neural network (sigmoid units)  &  & \Tstrut\Bstrut\\ \hline
+		1-NN &  &    \Tstrut\Bstrut\\
+		\hline
+		$k$-NN  &    & \Tstrut\Bstrut\\
+		\hline
+	\end{tabular}
+\end{center}
+	
+\end{enumerate}
+%
+\item
+Solution to problem 4 goes here
+
+% Use this table to fill in your answers
+\begin{enumerate}
+	\item
+	Solution goes here
+	\begin{center}
+		\begin{tabular}{lcccc}
+			\hline
+			\textbf{Algorithm} &  \textbf{Training Error} & \textbf{Test Error}\\
+			\hline
+			Linear least squares regression (from PS1) &   &  \\
+			Neural network (sigmoid units) &  &  \\
+			Neural network (ReLU units) &  &  \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\item
+	Solution goes here
+	\begin{center}
+		\begin{tabular}{lcccc}
+			\hline
+			\textbf{Algorithm} &  \textbf{Training Error} & \textbf{Test Error}\\
+			\hline
+			Linear least squares regression (from PS1) &   &  \\
+			Neural network (sigmoid units) &  &  \\
+			Neural network (ReLU units) &  &  \\
+			\hline
+		\end{tabular}
+	\end{center}
+\end{enumerate}
+
+
+%
+\item
+Solution to problem 5 goes here
+
+\end{enumerate}
+
+
+
+
+\end{document}
+
+%=========================== END DOCUMENT ==============================
+
