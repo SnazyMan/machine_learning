@@ -49,8 +49,8 @@ function [W1, W2, b1, b2] = gradientDescent(W1, dW1, W2, dW2, b1, db1, b2, db2, 
     % The Descent beckons !!!
     W1 = W1 - eta * dW1';
     W2 = W2 - eta * dW2';
-    b1 = b1 - eta * b1;
-    b2 = b2 - eta * b2;
+    b1 = b1 - eta * db1;
+    b2 = b2 - eta * db2;
 end
 
 function [W1, W2, b1, b2] = init(d)
